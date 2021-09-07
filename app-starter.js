@@ -63,12 +63,11 @@ function appMenu() {
           type: "input",
           name: "managerId",
           message: "Please enter the manager's ID.",
-          validate: (nameInput) => {
-            if (nameInput) {
-              console.log("Please enter the manager's ID!");
-              return false;
-            } else {
+          validate: (answers) => {
+            if (answers !== "" ) {
               return true;
+            } else {
+              return "Please enter the manager's ID!";
             }
           },
         },
@@ -76,18 +75,17 @@ function appMenu() {
           type: "input",
           name: "managerOfficeNumber",
           message: "Please enter the manager's office number",
-          validate: (nameInput) => {
-            if (nameInput) {
-              console.log("Please enter an office number!");
-              return false;
-            } else {
+          validate: (answers) => {
+            if (answers) {
               return true;
+            } else {
+              return "Please enter an office number!";
             }
           },
         },
       ])
       .then((answers) => {
-        const Manager = new Manager(
+        const manager = new Manager(
           answers.managerName,
           answers.managerRole,
           answers.managerId,
@@ -139,12 +137,11 @@ function appMenu() {
           type: "input",
           name: "engineerName",
           message: "What's the name of the Engineer?",
-          validate: (nameInput) => {
-            if (nameInput) {
+          validate: (answers) => {
+            if (answers) {
               return true;
             } else {
-              console.log("Please enter an Engineer's name!");
-              return false;
+              return "Please enter an Engineer's name!";
             }
           },
         },
@@ -156,31 +153,29 @@ function appMenu() {
         },
         {
           type: "input",
-          name: "email",
+          name: "engineerEmail",
           message: "Please enter the Engineer's email.",
         },
         {
           type: "input",
           name: "engineerId",
           message: "Please enter the Engineer's ID.",
-          validate: (nameInput) => {
-            if (nameInput) {
-              console.log("Please enter the Engineer's ID!");
-              return false;
-            } else {
-              return true;
-            }
+          // validate: (answers) => {
+          //   if (answers) {
+          //     return false;
+          //   } else 
+          //     return "Please enter the Engineer's ID!";
+          //   }
           },
-        },
         {
           type: "input",
           name: "engineerGithub",
           message: "Please enter the Engineer's github username.",
-          validate: (nameInput) => {
-            if (nameInput) {
+          validate: (answers) => {
+            if (answers) {
               return true;
             } else {
-              console.log("Please enter the Engineer's github username!");
+              return "Please enter the Engineer's github username!";
             }
           },
         },
@@ -193,14 +188,14 @@ function appMenu() {
         // 2. ADD (PUSH) THE ENGINEER VARIABLE TO the teamMembers ARRAY  teamMembers.push(manager);
         // 3. ADD (PUSH) THE ENGINERR ID TO THE idArray ARRAY  idArray.push(answers.engineerId);
         //
-        const Engineer = new Engineer(
+        const engineer = new Engineer(
           answers.engineerName,
           answers.engineerRole,
           answers.engineerId,
           answers.engineerEmail,
           answers.engineerGithub
         );
-        teamMembers.push(Engineer);
+        teamMembers.push(engineer);
         idArray.push(answers.engineerId);
         createTeam();
       });
@@ -215,38 +210,36 @@ function appMenu() {
         //
         {
           type: "input",
-          name: "name",
+          name: "internName",
           message: "What's the name of the Intern?",
-          validate: (nameInput) => {
-            if (nameInput) {
+          validate: (answers) => {
+            if (answers) {
               return true;
             } else {
-              console.log("Please enter an Intern's name!");
-              return false;
+              return "Please enter an Intern's name!";
             }
           },
         },
         {
           type: "list",
-          name: "role",
+          name: "internRole",
           message: "Please choose your employee's role",
           choices: ["Intern"],
         },
         {
           type: "input",
-          name: "email",
-          message: "Please enter the Intern's email."
+          name: "internEmail",
+          message: "Please enter the Intern's email.",
         },
         {
           type: "input",
-          name: "id",
+          name: "internId",
           message: "Please enter the Intern's ID.",
-          validate: (nameInput) => {
-            if (nameInput) {
-              console.log("Please enter the Intern's ID!");
-              return false;
-            } else {
+          validate: (answers) => {
+            if (answers) {
               return true;
+            } else {
+              return "Please enter the Intern's ID!";
             }
           },
         },
@@ -254,11 +247,11 @@ function appMenu() {
           type: "input",
           name: "school",
           message: "Please enter the Intern's school",
-          validate: (nameInput) => {
-            if (nameInput) {
+          validate: (answers) => {
+            if (answers) {
               return true;
             } else {
-              console.log("Please enter the Intern's school!");
+            return "Please enter the Intern's school!";
             }
           },
         }
@@ -271,15 +264,15 @@ function appMenu() {
         // 2. ADD (PUSH) THE INTERN VARIABLE TO the teamMembers ARRAY
         // 3. ADD (PUSH) THE INTERN ID TO THE idArray ARRAY
         //
-        const Intern = new Intern(
+        const intern = new Intern(
           answers.internName,
           answers.interRole,
           answers.internId,
           answers.internEmail,
-          answers.internSchool
+          answers.school
         );
-        teamMembers.push(Intern);
-        idArray.push(answers.InternId);
+        teamMembers.push(intern);
+        idArray.push(answers.internId);
         createTeam();
       });
   }
