@@ -30,11 +30,6 @@ function appMenu() {
     console.log("Please build your team");
     inquirer
       .prompt([
-        //
-        // YOUR CODE HERE:
-        // CREATE OBJECTS OF QUESTIONS HERE FOR MANAGER
-        // Strongly recommend to add validate property function for id and email
-        //
         {
           type: "input",
           name: "managerName",
@@ -43,8 +38,7 @@ function appMenu() {
             if (nameInput) {
               return true;
             } else {
-              console.log("Please enter the manager's name!");
-              return false;
+              return "Please enter the manager's name!";
             }
           },
         },
@@ -64,7 +58,7 @@ function appMenu() {
           name: "managerId",
           message: "Please enter the manager's ID.",
           validate: (answers) => {
-            if (answers !== "" ) {
+            if (answers !== "") {
               return true;
             } else {
               return "Please enter the manager's ID!";
@@ -87,7 +81,7 @@ function appMenu() {
       .then((answers) => {
         const manager = new Manager(
           answers.managerName,
-          answers.managerRole,
+          // answers.managerRole,
           answers.managerId,
           answers.managerEmail,
           answers.managerOfficeNumber
@@ -129,10 +123,6 @@ function appMenu() {
   function addEngineer() {
     inquirer
       .prompt([
-        //
-        // YOUR CODE HERE
-        // CREATE OBJECTS OF QUESTIONS FOR ENGINEER
-        //
         {
           type: "input",
           name: "engineerName",
@@ -160,13 +150,7 @@ function appMenu() {
           type: "input",
           name: "engineerId",
           message: "Please enter the Engineer's ID.",
-          // validate: (answers) => {
-          //   if (answers) {
-          //     return false;
-          //   } else 
-          //     return "Please enter the Engineer's ID!";
-          //   }
-          },
+        },
         {
           type: "input",
           name: "engineerGithub",
@@ -181,16 +165,9 @@ function appMenu() {
         },
       ])
       .then((answers) => {
-        //
-        // YOUR CODE HERE
-        // 1. CREATE A VARIABLE TO STORE THE ENGINEER OBJECT INSTANTIATED WITH THE ENGINEER CLASS, PASSING ANSWERS PROPERTIES AS INPUT AURGUMENTS
-        //    TO THE ENGINEER CLASS CONSTRUCTOR
-        // 2. ADD (PUSH) THE ENGINEER VARIABLE TO the teamMembers ARRAY  teamMembers.push(manager);
-        // 3. ADD (PUSH) THE ENGINERR ID TO THE idArray ARRAY  idArray.push(answers.engineerId);
-        //
         const engineer = new Engineer(
           answers.engineerName,
-          answers.engineerRole,
+          // answers.engineerRole,
           answers.engineerId,
           answers.engineerEmail,
           answers.engineerGithub
@@ -204,10 +181,6 @@ function appMenu() {
   function addIntern() {
     inquirer
       .prompt([
-        //
-        // YOUR CODE HERE
-        // CREATE OBJECTS OF QUESTIONS FOR ENGINEER
-        //
         {
           type: "input",
           name: "internName",
@@ -251,22 +224,15 @@ function appMenu() {
             if (answers) {
               return true;
             } else {
-            return "Please enter the Intern's school!";
+              return "Please enter the Intern's school!";
             }
           },
-        }
+        },
       ])
       .then((answers) => {
-        //
-        // YOUR CODE HERE
-        // 1. CREATE A VARIABLE TO STORE THE INTERN OBJECT INSTANTIATED WITH THE INTERN CLASS, PASSING ANSWERS PROPERTIES AS INPUT AURGUMENTS
-        //    TO THE INTERN CLASS CONSTRUCTOR
-        // 2. ADD (PUSH) THE INTERN VARIABLE TO the teamMembers ARRAY
-        // 3. ADD (PUSH) THE INTERN ID TO THE idArray ARRAY
-        //
         const intern = new Intern(
           answers.internName,
-          answers.interRole,
+          // answers.interRole,
           answers.internId,
           answers.internEmail,
           answers.school
